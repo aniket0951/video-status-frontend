@@ -5,7 +5,6 @@ import { ENDPOINTS } from "../helper/endpoints";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 function Landing() {
   const navigation = useNavigate()
   const [email, setEmaill] = useState("");
@@ -21,7 +20,9 @@ function Landing() {
     axios
     .post(ENDPOINTS.ADMIN_USER_LOGIN, requestOption)
     .then((response) => {
+      ENDPOINTS.USERNAME = response.data.user_data.username  
       navigation("/admin-home", { state: response.data });
+      window.location.reload(true)
     })
     .catch((error) => {
       setIsFailedResponse(false)
