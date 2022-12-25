@@ -4,7 +4,7 @@ import "../css/style.css";
 import { ENDPOINTS } from "../helper/endpoints";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import Cookies from 'js-cookie'
 
 function Landing() {
   const navigation = useNavigate()
@@ -21,7 +21,10 @@ function Landing() {
     axios
     .post(ENDPOINTS.ADMIN_USER_LOGIN, requestOption)
     .then((response) => {
+      ENDPOINTS.USERNAME = response.data.user_data.username 
+      Cookies.set("authToken", response.data.user_data.token) 
       navigation("/admin-home", { state: response.data });
+      window.location.reload(true)
     })
     .catch((error) => {
       setIsFailedResponse(false)
