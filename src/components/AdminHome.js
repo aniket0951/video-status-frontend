@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { SetAppSideBar } from "../App";
 import "../css/style.css";
-import AppSidebar from "./AppSidebar";
 import { useNavigate } from "react-router-dom";
 
 function AdminHome() {

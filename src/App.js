@@ -4,6 +4,7 @@ import Landing from "./components/Login";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import AdminHome from "./components/AdminHome";
 import VideoCategoryHome from "./components/VideoCategoryHome";
+import AddVideoCategory from "./components/AddVideoCategory";
 import { Menu } from "antd";
 import {
   DashOutlined,
@@ -73,7 +74,7 @@ function AppSideBar() {
             icon: <UnorderedListOutlined />,
             children: [
               { label: "Show Category", key: "/show-category" },
-              { label: "Add Category", key: "/offlineusers" },
+              { label: "Add Category", key: "/add-category" },
             ],
           },
           { label: "Profile", key: "/profile", icon: <UserOutlined /> },
@@ -83,6 +84,13 @@ function AppSideBar() {
             icon: <PoweroffOutlined />,
             danger: true,
           },
+          { label: "", key: "/admin-home" },
+          { label: "", key: "/admin-home" },
+          { label: "", key: "/admin-home" },
+          { label: "", key: "/admin-home" },
+          { label: "", key: "/admin-home" },
+          { label: "", key: "/admin-home" },
+          { label: "", key: "/admin-home" },
         ]}
       ></Menu>
     </div>
@@ -99,7 +107,7 @@ function Content() {
         <Route path="/profile" element={<div>Profile</div>}></Route>
         <Route path="/video_cat" element={<div>Signout</div>}></Route>
         <Route path="/show-category" element={<VideoCategoryHome/>}></Route>
-        <Route path="/offlineusers" element={<div>Offline Users</div>}></Route>
+        <Route path="/add-category" element={<AddVideoCategory/>}></Route>
       </Routes>
     </div>
   );
