@@ -18,26 +18,33 @@
   border-radius: 400/2;
 }
 
-table {
+/* table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+} */
+
+/* tbody {
+  overflow: scroll;
 }
 
-td, th {
+thead{
+  display: block;
+} */
+
+
+/* td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
-}
+} */
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
 .add-video-cat-card {
-  display: 'flex';
-  align-items: 'center';
-  justify-content: 'center';
-  height: '100vh';
-  margin: auto;
-  align-content: center;
+  margin-left: 150px;
+}
+.add-cat-btn{
+  margin-left: 150px;
+}
+.card-videocat{
+  margin: 10px;
 }

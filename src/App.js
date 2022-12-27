@@ -13,13 +13,11 @@ import {
   UnorderedListOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { useState } from "react";
 
 function App() {
-  const [showLogin, setShowLogin] = useState(false);
   return (
     <>
-      {window.location.pathname == "/" ? (
+      {window.location.pathname === "/" ? (
         <div>
           <Landing/>
           <Content/>
@@ -31,7 +29,7 @@ function App() {
             <AppSideBar />
             <Content />
           </div>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       )}
       
