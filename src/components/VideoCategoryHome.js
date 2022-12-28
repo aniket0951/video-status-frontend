@@ -68,8 +68,31 @@ function VideoCategoryHome() {
   };
 
   const updateVideoCat = () => {
-    console.log("radio button", isCategoryActive);
-  }
+    const requestOption = {
+      id: videoCatId,
+      category_name: categoryName,
+      category_desc: categoryDesc,
+      is_category_active: isCategoryActive,
+    };
+
+    axios
+      .put(ENDPOINTS.UPDATE_VIDEO_CATEGORY, requestOption, { headers: headers })
+      .then((response) => {
+        Swal.fire({
+          title: response.data.message,
+          icon: "success",
+          confirmButtonText: "OK",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            setOpenUpdateCat(false)
+            fetchAllVideoCat()
+          } 
+        });
+      })
+      .catch((error) => {
+        console.log("API error ==> ", error);
+      });
+  };
 
   const openForUpdate = (obj) => {
     setVideoCatId(obj.id);
@@ -79,11 +102,9 @@ function VideoCategoryHome() {
     setOpenUpdateCat(true);
   };
 
-  const _handleInputChange = (e) =>{
-    var isChecked = e.target.value ==="1" ? this.state.radioButton1 : this.state.radioButton2;
-    this.props.handleChange(e);
-}
-
+  const _handleInputChange = (val) => {
+    setCategoryActive(val);
+  };
 
   const openForAllData = () => {
     setOpenUpdateCat(false);
@@ -95,7 +116,7 @@ function VideoCategoryHome() {
         {openUpdateCat ? (
           <>
             <img
-            alt="#"
+              alt="#"
               className="back-img-video-cat"
               src={backImg}
               onClick={() => openForAllData()}
@@ -125,20 +146,19 @@ function VideoCategoryHome() {
                           className="form-control"
                           placeholder="Enter video category description"
                           value={categoryDesc}
-                          cols={40} 
+                          cols={40}
                           rows={10}
-                          onChange={(e) => setCategoryName(e.target.value)}
+                          onChange={(e) => setCategoryDesc(e.target.value)}
                         />
                       </div>
                     </Card.Text>
-                    <div onChange={(e) => setCategoryActive(e.target.value)}>
+                    <div>
                       <input
                         className="radio"
                         type="radio"
                         checked={isCategoryActive === true}
                         value={true}
-                        onChange={(e) => setCategoryActive(e.target.value)}
-                        name="gender"
+                        onChange={() => _handleInputChange(true)}
                       />{" "}
                       Active
                       <input
@@ -146,13 +166,16 @@ function VideoCategoryHome() {
                         type="radio"
                         checked={isCategoryActive === false}
                         value={false}
-                        onClick={(e) => setCategoryActive(e.target.value)}
-                        name="gender"
+                        onChange={() => _handleInputChange(false)}
                       />{" "}
                       DeActive
                     </div>
 
-                    <Button variant="primary" style={{ margin: "10px" }} onClick={() => updateVideoCat()}>
+                    <Button
+                      variant="primary"
+                      style={{ margin: "10px" }}
+                      onClick={() => updateVideoCat()}
+                    >
                       Update{" "}
                     </Button>
                   </Card.Body>

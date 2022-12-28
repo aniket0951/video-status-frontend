@@ -5,6 +5,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import AdminHome from "./components/AdminHome";
 import VideoCategoryHome from "./components/VideoCategoryHome";
 import AddVideoCategory from "./components/AddVideoCategory";
+import UserProfile from "./components/UserProfile";
 import { Menu } from "antd";
 import {
   DashOutlined,
@@ -39,7 +40,7 @@ function App() {
 
 function Header() {
   return (
-    <div className="header">
+    <div className="header" >
       <hq>Header</hq>
     </div>
   );
@@ -82,13 +83,13 @@ function AppSideBar() {
             icon: <PoweroffOutlined />,
             danger: true,
           },
-          { label: "", key: "/admin-home" },
-          { label: "", key: "/admin-home" },
-          { label: "", key: "/admin-home" },
-          { label: "", key: "/admin-home" },
-          { label: "", key: "/admin-home" },
-          { label: "", key: "/admin-home" },
-          { label: "", key: "/admin-home" },
+          { label: "", key: "/admin-home1" },
+          { label: "", key: "/admin-home2" },
+          { label: "", key: "/admin-home3" },
+          { label: "", key: "/admin-home4" },
+          { label: "", key: "/admin-home5" },
+          { label: "", key: "/admin-home6" },
+          { label: "", key: "/admin-home7" },
         ]}
       ></Menu>
     </div>
@@ -102,7 +103,7 @@ function Content() {
         <Route path="/admin-home" element={<AdminHome />}></Route>
         <Route path="/dashoboard" element={<div>Dashboard</div>}></Route>
         <Route path="/userlist" element={<div>UserList</div>}></Route>
-        <Route path="/profile" element={<div>Profile</div>}></Route>
+        <Route path="/profile" element={<UserProfile/>}></Route>
         <Route path="/video_cat" element={<div>Signout</div>}></Route>
         <Route path="/show-category" element={<VideoCategoryHome/>}></Route>
         <Route path="/add-category" element={<AddVideoCategory/>}></Route>
