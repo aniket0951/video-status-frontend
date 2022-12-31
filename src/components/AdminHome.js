@@ -1,25 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import "../css/style.css";
-import { useNavigate } from "react-router-dom";
+import React, {useEffect} from 'react'
+import {useLocation} from "react-router-dom";
 
 function AdminHome() {
-  const navigation = useNavigate()
+    const location = useLocation()
+    useEffect(() => {
 
-  const location = useLocation();
-  const [userName, setUserName] = useState("");
-
-  useEffect(() => {
-    if (location.state && location.state.status === true) {
-      setUserName(location.state.user_data.username);
-    }
-  });
-
+    })
   return (
-    <>
-      <div>{userName}</div>
-    </>
-  );
+    <div>
+      <h1>Admin Home</h1>
+    </div>
+  )
 }
 
-export default AdminHome;
+export default AdminHome
+

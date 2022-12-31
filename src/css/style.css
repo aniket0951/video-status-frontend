@@ -18,26 +18,119 @@
   border-radius: 400/2;
 }
 
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
+.radio{
+  margin: 5px;
+}
+
+.add-video-cat-card {
+  margin-left: 150px;
+}
+.add-cat-btn{
+  margin-left: 150px;
+}
+.card-videocat{
+  margin: 10px;
+}
+
+/* ==================== Adim users ===================*/
+.admin-users-card{
+  color: red;
+  /*display: flex;*/
+  /*justify-content: center;*/
+}
+.box1,
+.box2,
+.box3,
+.box4,
+.box5,
+.box6,
+.box7,
+.box8,
+.box9,
+.box10 {
+  background-color: #ffffff;
+  border-radius: 10px 10px 10px 10px;
+  overflow: hidden;
+  /* height: 200px; */
+  max-height: 35vh;
+  -webkit-box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
+}
+
+.box {
+  margin: 20px;
+}
+
+.grid {
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.grid > div {
+  flex-basis: calc(50% - 40px);
+}
+
+.boxy {
+  width: 300px;
+  background: green;
+  padding: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.boxy:hover {
+  animation: boxyRotation 4s infinite linear;
+}
+
+@keyframes boxyRotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.black-background {
+  background-color: red !important;
+  font-size: 5vh;
+  border-radius: 10px 10px 10px 10px;
+}
+.boxes {
+  margin: 20px;
+  margin-top: 150px;
+  background-color: rgb(198, 177, 198);
+  overflow: hidden;
+  height: 200px;
+  max-height: 35vh;
+  box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px 10px 10px 10px;
+}
+
+.grids {
+  max-width: 50%;
+  margin: auto;
+}
+
+/* video cat */
+.back-img-video-cat{
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+}
+
+.form-control{
   width: 100%;
 }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #f6d365;
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-.add-video-cat-card {
-  display: 'flex';
-  align-items: 'center';
-  justify-content: 'center';
-  height: '100vh';
-  margin: auto;
-  align-content: center;
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
 }
