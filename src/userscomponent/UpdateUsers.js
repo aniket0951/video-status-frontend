@@ -1,21 +1,60 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import {useLocation} from "react-router-dom";
-import { Container, Card, Col, Button } from "react-bootstrap";
+import {  Card, Button } from "react-bootstrap";
 import "../css/style.css"
 import axios from "axios";
 import {ENDPOINTS} from "../helper/endpoints";
 import Swal from "sweetalert2";
 import {useNavigate} from "react-router-dom";
+import Cookies from "js-cookie";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function UpdateUsers() {
+    const navigation = useNavigate()
     const location = useLocation()
+    
+    const userId = useState(location.state.id)
     const [userName, setUserName] = useState(location.state.username)
     const [userMobile, setUserMobile] = useState(location.state.mobile)
     const [userEmail, setUserEmail] = useState(location.state.email)
 
+    const userAuthToken = Cookies.get("authToken")
+    const headers = {
+        "Content-Type": "application/json",
+        Authorization: userAuthToken,
+    };
+
 
     const updateUser= () => {
-        console.log("user updated ==> ", 1+1)
+        const requestOption = {
+            "id":userId,
+            "username":userName,
+            "mobile": userMobile,
+            "email": userEmail,
+            "user_type": "admin-user"
+        }
+
+        axios
+        .put(ENDPOINTS.UPDATE_ADMIN_USER, requestOption, {headers:headers})
+        .then(response => {
+            Swal.fire({
+                title: response.data.message,
+                icon: "success",
+                confirmButtonText: "OK",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigation("/show-users")
+                }
+            });
+        })
+        .catch(error => {
+            Swal.fire({
+                title: error.response.data.message,
+                icon: "error",
+                text: error.response.data.error,
+                confirmButtonText: "OK",
+            });            
+        })
     }
 
     return (
