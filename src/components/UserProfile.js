@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   MDBCol,
   MDBContainer,
@@ -27,16 +27,25 @@ export default function UserProfile() {
         "Content-Type": "application/json",
         Authorization: userAuthToken,
     };
-    
-    useEffect(() => {
-        getUserInformation();
-    },[])
 
+    React.useCallback(async(e) => {
+      console.log("use call back get called", e);
+    },[])
+    
+    React.useEffect(() => {
+      console.log("use effect get called..");
+      // setIsAPIFetched(true)
+      getUserInformation()
+    },[])
+    if(isAPIFetched){
+      console.log("we can call API...");
+    }
     const getUserInformation= () => {
         axios
         .get(ENDPOINTS.USER_BY_ID, {headers:headers})
         .then(response => {
             console.log("API response => ", response);
+            setIsAPIFetched(false)
             setUserData(response.data.user_data)
         })
         .catch(error => {
@@ -102,7 +111,7 @@ export default function UserProfile() {
                     <MDBCardText>Full Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">Johnatan Smith</MDBCardText>
+                    <MDBCardText className="text-muted">{userData.username}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -111,7 +120,7 @@ export default function UserProfile() {
                     <MDBCardText>Email</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">example@example.com</MDBCardText>
+                    <MDBCardText className="text-muted">{userData.email}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -120,16 +129,16 @@ export default function UserProfile() {
                     <MDBCardText>Phone</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">(097) 234-5678</MDBCardText>
+                    <MDBCardText className="text-muted">{userData.mobile}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
                 <MDBRow>
                   <MDBCol sm="3">
-                    <MDBCardText>Mobile</MDBCardText>
+                    <MDBCardText>User Type</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">(098) 765-4321</MDBCardText>
+                    <MDBCardText className="text-muted">{userData.user_type}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
