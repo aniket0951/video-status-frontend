@@ -23,7 +23,6 @@ function VideoCategoryHome() {
 
   useEffect(() => {
     fetchAllVideoCat();
-    console.log(isCategoryActive);
   }, []);
 
   const fetchAllVideoCat = () => {

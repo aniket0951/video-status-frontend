@@ -6,6 +6,9 @@ import AdminHome from "./components/AdminHome";
 import VideoCategoryHome from "./components/VideoCategoryHome";
 import AddVideoCategory from "./components/AddVideoCategory";
 import UserProfile from "./components/UserProfile";
+import AdminUsers from "./userscomponent/AdminUsers";
+import AddUsers from "./userscomponent/AddUsers";
+import UpdateUsers from "./userscomponent/UpdateUsers";
 import { Menu } from "antd";
 import {
   DashOutlined,
@@ -66,7 +69,12 @@ function AppSideBar() {
         defaultSelectedKeys={[window.location.pathname]}
         items={[
           { label: "Home", key: "/admin-home", icon: <HomeOutlined /> },
-          { label: "Dashboard", key: "/dashoboard", icon: <DashOutlined /> },
+          { label: "Users", key: "/users", icon: <DashOutlined />,
+          children: [
+            {label: "Show Users", key: "/show-users"},
+            {label: "Add User", key: "/add-user"},
+          ]
+          },
           {
             label: "Video Category",
             key: "/userlist",
@@ -101,7 +109,9 @@ function Content() {
     <div>
       <Routes>
         <Route path="/admin-home" element={<AdminHome />}></Route>
-        <Route path="/dashoboard" element={<div>Dashboard</div>}></Route>
+        <Route path="/show-users" element={<AdminUsers />}></Route>
+        <Route path={"/add-user"} element={<AddUsers/>} />
+        <Route path={"/update-user"} element={<UpdateUsers/>} />
         <Route path="/userlist" element={<div>UserList</div>}></Route>
         <Route path="/profile" element={<UserProfile/>}></Route>
         <Route path="/video_cat" element={<div>Signout</div>}></Route>

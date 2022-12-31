@@ -28,28 +28,21 @@ export default function UserProfile() {
         Authorization: userAuthToken,
     };
 
-    React.useCallback(async(e) => {
-      console.log("use call back get called", e);
-    },[])
     
     React.useEffect(() => {
       console.log("use effect get called..");
       // setIsAPIFetched(true)
       getUserInformation()
     },[])
-    if(isAPIFetched){
-      console.log("we can call API...");
-    }
+
     const getUserInformation= () => {
         axios
         .get(ENDPOINTS.USER_BY_ID, {headers:headers})
         .then(response => {
-            console.log("API response => ", response);
             setIsAPIFetched(false)
             setUserData(response.data.user_data)
         })
         .catch(error => {
-            console.log("API response ==> ", error);
         })
     }
 
