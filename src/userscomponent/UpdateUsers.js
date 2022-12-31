@@ -13,11 +13,6 @@ function UpdateUsers() {
     const [userMobile, setUserMobile] = useState(location.state.mobile)
     const [userEmail, setUserEmail] = useState(location.state.email)
 
-    useEffect(() => {
-        // setUserName(location.state.username)
-        // setUserEmail(location.state.email)
-        // setUserMobile(location.state.mobile)
-    })
 
     const updateUser= () => {
         console.log("user updated ==> ", 1+1)
