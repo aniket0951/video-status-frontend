@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Container, Card, Col, Button } from "react-bootstrap";
+import {  Card, Button } from "react-bootstrap";
 import "../css/style.css"
 import axios from "axios";
 import {ENDPOINTS} from "../helper/endpoints";
