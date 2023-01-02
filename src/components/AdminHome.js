@@ -1,47 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 import "../css/style.css";
 import axios from "axios";
-import Cookies from "js-cookie";
 import { ENDPOINTS } from "../helper/endpoints";
 import Swal from "sweetalert2";
 import delteImg from "../asserts/delete.png";
+import  "../helper/Common";
+import {getHeaders, getMultipartHeaders} from "../helper/Common";
 
 function AdminHome() {
-  const location = useLocation();
-  const userAuthToken = Cookies.get("authToken");
   const [openUploadVideo, setOpenUploadVideo] = useState(false);
   const [videoTitle, setVideoTitle] = useState("");
   const [videoDesc, setVideoDesc] = useState("");
   const [myFile, setFile] = useState("");
   const [videoCategory, setAllVideoCategory] = useState([])
   const [videoCatId, setVideoCatId] = useState("")
-
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: userAuthToken,
-  };
-
-  const multiPartHeadr = {
-    "Content-Type": "multipart/form-data",
-    Authorization: userAuthToken,
-  }
-
   const [videoData, setAllVideosData] = useState([]);
 
   useEffect(() => {
-    if (!openUploadVideo){
-      fetchAllVideos();
-    }
-
-  }, []);
+    fetchAllVideos();
+  }, [setAllVideosData]);
 
 
 
   const fetchAllVideos = () => {
     axios
-      .get(ENDPOINTS.GET_ALL_VIDEOS, { headers: headers })
+      .get(ENDPOINTS.GET_ALL_VIDEOS, { headers: getHeaders })
       .then((response) => {
         setAllVideosData(response.data.video_data);
       })
@@ -52,7 +36,7 @@ function AdminHome() {
 
   const fetchVideoCategory = () => {
     axios
-        .get(ENDPOINTS.GET_ALL_VIDEO_CATEGORY, {headers:headers})
+        .get(ENDPOINTS.GET_ALL_VIDEO_CATEGORY, {headers:getHeaders})
         .then(response => {
           setAllVideoCategory(response.data.video_data)
           if (response.data.video_data.length >= 1){
@@ -93,7 +77,7 @@ function AdminHome() {
     formData.append("video_cat_id", videoCatId);
 
     axios
-        .post(ENDPOINTS.UPLOAD_VIDEO, formData, {headers:multiPartHeadr})
+        .post(ENDPOINTS.UPLOAD_VIDEO, formData, {headers:getMultipartHeaders})
         .then(response => {
           Swal.fire({
             title: response.data.message,
@@ -121,7 +105,7 @@ function AdminHome() {
   const deleteVideo = (obj) => {
     const requestURL = ENDPOINTS.DELETE_VIDEO + "?video_id=" + obj.id
     axios
-        .delete(requestURL, {headers:headers})
+        .delete(requestURL, {headers:getHeaders})
         .then(response => {
           Swal.fire({
             title: response.data.message,
@@ -210,7 +194,6 @@ function AdminHome() {
               </Card.Title>
               <Card.Text>
                 <label>
-
                   Select video category
                 </label>
                   <div>

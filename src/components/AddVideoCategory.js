@@ -1,15 +1,14 @@
 import axios from "axios";
-import Cookies from "js-cookie";
 import React, { useState } from "react";
 import "../css/style.css";
 import { ENDPOINTS } from "../helper/endpoints";
 import Swal from "sweetalert2";
 import "bootstrap/dist/css/bootstrap.min.css";
+import {getHeaders} from "../helper/Common";
 
 function AddVideoCategory() {
   const [categoryName, setCategoryName] = useState("");
   const [categoryDesc, setCategoryDesc] = useState("");
-  const userAuthToken = Cookies.get("authToken");
 
   const addNewCategory = () => {
     const requestOption = {
@@ -18,13 +17,9 @@ function AddVideoCategory() {
       is_category_active: true,
     };
 
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: userAuthToken,
-    };
 
     axios
-      .post(ENDPOINTS.ADD_VIDEO_CATEGORY, requestOption, { headers: headers })
+      .post(ENDPOINTS.ADD_VIDEO_CATEGORY, requestOption, { headers: getHeaders })
       .then((response) => {
         Swal.fire({
           title: "Success",
