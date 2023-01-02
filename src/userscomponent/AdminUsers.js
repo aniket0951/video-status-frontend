@@ -3,15 +3,13 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import {ENDPOINTS} from "../helper/endpoints";
 import "../css/style.css"
-import { Container, Card, Col, Button } from "react-bootstrap";
+import {  Card, Button } from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 
 function AdminUsers() {
     const navigation = useNavigate()
     const [users, setAllAdminUsers] = useState([])
-    const [isUserFetchFailed, setIsUserFetchFailed] = useState(false)
-    const [responseMessage, setResponseMessage] = useState("")
 
     const userAuthToken = Cookies.get("authToken")
 
@@ -29,11 +27,9 @@ function AdminUsers() {
             .get(ENDPOINTS.GET_ALL_ADMIN_USERS, { headers: headers })
             .then(response => {
                 setAllAdminUsers(response.data.user_data)
-                setResponseMessage(response.data.message)
             })
             .catch(error => {
-                setIsUserFetchFailed(true)
-                setResponseMessage(error.response.data.error)
+                alert(error.response.data.error)
             })
     }
 

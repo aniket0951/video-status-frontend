@@ -16,6 +16,8 @@ const DELETE_VIDEO_CATEGORY = BASE_URL + "video-category/delete-category"
 const UPDATE_VIDEO_CATEGORY = BASE_URL + "video-category/update-category"
 
 const GET_ALL_VIDEOS = BASE_URL + "videos/get-all-videos"
+const UPLOAD_VIDEO = BASE_URL + "videos/add-video"
+const DELETE_VIDEO = BASE_URL + "videos/delete-video"
 
 export const ENDPOINTS = {
     ADMIN_USER_LOGIN:ADMIN_USER_LOGIN,
@@ -30,5 +32,7 @@ export const ENDPOINTS = {
     UPDATE_ADMIN_USER:UPDATE_ADMIN_USER,
     DELETE_ADMIN_USER:DELETE_ADMIN_USER,
     GET_ALL_VIDEOS:GET_ALL_VIDEOS,
+    UPLOAD_VIDEO:UPLOAD_VIDEO,
+    DELETE_VIDEO:DELETE_VIDEO,
 }
  
