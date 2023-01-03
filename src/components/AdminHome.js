@@ -66,10 +66,7 @@ function AdminHome() {
     });
   }
   const onFileUpload = () => {
-    // Create an object of formData
     const formData = new FormData();
-
-    // Update the formData object
     formData.append("title", videoTitle);
     formData.append("video", myFile);
     formData.append("desc", videoDesc);
@@ -103,6 +100,7 @@ function AdminHome() {
   };
 
   const deleteVideo = (obj) => {
+    console.log("delet id ==> ", obj.id);
     const requestURL = ENDPOINTS.DELETE_VIDEO + "?video_id=" + obj.id
     axios
         .delete(requestURL, {headers:getHeaders})
@@ -123,7 +121,7 @@ function AdminHome() {
         })
         .catch(error => {
           Swal.fire({
-            title: error.response.data.message,
+            title: error.response.data.error,
             icon: "error",
             confirmButtonText: "OK",
           })
