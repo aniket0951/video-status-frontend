@@ -70,7 +70,7 @@ function AdminHome() {
     formData.append("title", videoTitle);
     formData.append("video", myFile);
     formData.append("desc", videoDesc);
-    formData.append("is_active", true);
+    formData.append("is_active", false);
     formData.append("video_cat_id", videoCatId);
 
     axios
