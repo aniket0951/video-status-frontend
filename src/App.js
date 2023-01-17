@@ -9,6 +9,7 @@ import UserProfile from "./components/UserProfile";
 import AdminUsers from "./userscomponent/AdminUsers";
 import AddUsers from "./userscomponent/AddUsers";
 import UpdateUsers from "./userscomponent/UpdateUsers";
+import VideoVerification from "./videocomponent/VideoVerification";
 import { Menu } from "antd";
 import {
   DashOutlined,
@@ -16,6 +17,7 @@ import {
   PoweroffOutlined,
   UnorderedListOutlined,
   UserOutlined,
+  VideoCameraOutlined
 } from "@ant-design/icons";
 
 function App() {
@@ -84,6 +86,12 @@ function AppSideBar() {
               { label: "Add Category", key: "/add-category" },
             ],
           },
+          { label: "Videos", key: "/admin-home1", icon: <VideoCameraOutlined /> ,
+          children: [
+            {label: "Video Verification", key: "/video-verification"},
+            {label: "Publish Video", key: "/publish-video"},
+          ]
+          },
           { label: "Profile", key: "/profile", icon: <UserOutlined /> },
           {
             label: "Video Cat",
@@ -91,7 +99,7 @@ function AppSideBar() {
             icon: <PoweroffOutlined />,
             danger: true,
           },
-          { label: "", key: "/admin-home1" },
+
           { label: "", key: "/admin-home2" },
           { label: "", key: "/admin-home3" },
           { label: "", key: "/admin-home4" },
@@ -117,6 +125,7 @@ function Content() {
         <Route path="/video_cat" element={<div>Signout</div>}></Route>
         <Route path="/show-category" element={<VideoCategoryHome/>}></Route>
         <Route path="/add-category" element={<AddVideoCategory/>}></Route>
+        <Route path={"/video-verification"} element={<VideoVerification/>}></Route>
       </Routes>
     </div>
   );

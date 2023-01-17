@@ -19,6 +19,8 @@ const GET_ALL_VIDEOS = BASE_URL + "videos/get-all-videos"
 const UPLOAD_VIDEO = BASE_URL + "videos/add-video"
 const DELETE_VIDEO = BASE_URL + "videos/delete-video"
 
+const VIDEOS_FOR_VERIFICATION = BASE_URL + "video-verification/videos-verification"
+
 export const ENDPOINTS = {
     ADMIN_USER_LOGIN:ADMIN_USER_LOGIN,
     USERNAME:USERNAME,
@@ -34,5 +36,6 @@ export const ENDPOINTS = {
     GET_ALL_VIDEOS:GET_ALL_VIDEOS,
     UPLOAD_VIDEO:UPLOAD_VIDEO,
     DELETE_VIDEO:DELETE_VIDEO,
+    VIDEOS_FOR_VERIFICATION:VIDEOS_FOR_VERIFICATION,
 }
  

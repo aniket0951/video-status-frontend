@@ -19,7 +19,7 @@ function AdminHome() {
 
   useEffect(() => {
     fetchAllVideos();
-  }, [setAllVideosData]);
+  }, []);
 
 
 
@@ -131,13 +131,13 @@ function AdminHome() {
   const renderAllVideos = (videoInfo, index) => {
     return (
       <Card
-        style={{ width: "31rem", height: "350px" }}
+        style={{ width: "55rem", height: "350px" }}
         key={index}
         className="box"
       >
         <Card.Img onClick={() => showDeleteWarning(videoInfo)}  style={{ width:"20px", marginLeft:"auto", marginRight:"25px", marginTop:"10px"}} src={delteImg} />
         <Card.Body>
-          <video width={400} height={200} style={{margin:"auto"}} controls>
+          <video width={300} height={200} style={{margin:"auto"}} controls>
             <source src={videoInfo.video_path}></source>
           </video>
         </Card.Body>
@@ -210,7 +210,7 @@ function AdminHome() {
         </div>
       ) : (
         <>
-          <div style={{ display: "flex", justifyContent: "right" }}>
+          <div style={{ display: "flex", justifyContent: "right", float: "right" }}>
             <Button
               style={{ marginTop: "10px" }}
               onClick={() => showUploadVideo()}
