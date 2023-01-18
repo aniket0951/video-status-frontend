@@ -19,6 +19,7 @@
     "js-cookie": "^3.0.1",
     "mdb-react-ui-kit": "^5.1.0",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.7.0",
     "react-bootstrap-validation": "^0.1.11",
     "react-cookie": "^4.1.1",
     "react-data-table-component": "^7.5.3",

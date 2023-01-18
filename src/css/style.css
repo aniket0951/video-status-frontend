@@ -1,43 +1,47 @@
 .card-view {
-  display: "flex";
-  align-items: center;
-  justify-content: center;
-  height: "100vh";
+    display: "flex";
+    align-items: center;
+    justify-content: center;
+    height: "100vh";
 }
+
 .center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 10px;
 }
 
 .card-img {
-  height: 200px;
-  width: 100px;
-  border-radius: 400/2;
+    height: 200px;
+    width: 100px;
+    border-radius: 400/2;
 }
 
-.radio{
-  margin: 5px;
+.radio {
+    margin: 5px;
 }
 
 .add-video-cat-card {
-  margin-left: 150px;
+    margin-left: 150px;
 }
-.add-cat-btn{
-  margin-left: 150px;
+
+.add-cat-btn {
+    margin-left: 150px;
 }
-.card-videocat{
-  margin: 10px;
+
+.card-videocat {
+    margin: 10px;
 }
 
 /* ==================== Adim users ===================*/
-.admin-users-card{
-  color: red;
-  /*display: flex;*/
-  /*justify-content: center;*/
+.admin-users-card {
+    color: red;
+    /*display: flex;*/
+    /*justify-content: center;*/
 }
+
 .box1,
 .box2,
 .box3,
@@ -48,98 +52,125 @@
 .box8,
 .box9,
 .box10 {
-  background-color: #ffffff;
-  border-radius: 10px 10px 10px 10px;
-  overflow: hidden;
-  /* height: 200px; */
-  max-height: 35vh;
-  -webkit-box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff;
+    border-radius: 10px 10px 10px 10px;
+    overflow: hidden;
+    /* height: 200px; */
+    max-height: 35vh;
+    -webkit-box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
 }
 
 .box {
-  margin: 20px;
+    margin: 20px;
 }
 
 .grid {
-  min-height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+    min-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
 .grid > div {
-  flex-basis: calc(50% - 40px);
+    flex-basis: calc(50% - 40px);
 }
 
 .boxy {
-  width: 300px;
-  background: green;
-  padding: 50px;
-  margin-left: auto;
-  margin-right: auto;
+    width: 300px;
+    background: green;
+    padding: 50px;
+    margin-left: auto;
+    margin-right: auto;
 }
+
 .boxy:hover {
-  animation: boxyRotation 4s infinite linear;
+    animation: boxyRotation 4s infinite linear;
 }
 
 @keyframes boxyRotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
 }
 
 .black-background {
-  background-color: red !important;
-  font-size: 5vh;
-  border-radius: 10px 10px 10px 10px;
+    background-color: red !important;
+    font-size: 5vh;
+    border-radius: 10px 10px 10px 10px;
 }
+
 .boxes {
-  margin: 20px;
-  margin-top: 150px;
-  background-color: rgb(198, 177, 198);
-  overflow: hidden;
-  height: 200px;
-  max-height: 35vh;
-  box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
-  border-radius: 10px 10px 10px 10px;
+    margin: 20px;
+    margin-top: 150px;
+    background-color: rgb(198, 177, 198);
+    overflow: hidden;
+    height: 200px;
+    max-height: 35vh;
+    box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px 10px 10px 10px;
 }
 
 .grids {
-  max-width: 50%;
-  margin: auto;
+    max-width: 50%;
+    margin: auto;
 }
 
 /* video cat */
-.back-img-video-cat{
-  width: 20px;
-  height: 20px;
-  margin: 10px;
+.back-img-video-cat {
+    width: 20px;
+    height: 20px;
+    margin: 10px;
 }
 
-.form-control{
-  width: 100%;
+.form-control {
+    width: 100%;
 }
 
 .gradient-custom {
-  /* fallback for old browsers */
-  background: #f6d365;
+    /* fallback for old browsers */
+    background: #f6d365;
 
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
 
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
 }
 
 /*------- card text video verification -----------*/
-.card-text{
-  color: black;
-  font-weight: bold;
-  font-family: "Font Awesome 6 Pro", "Font Awesome 6 Free";
-  font-size: 18px;
-  margin: 5px;
+.card-text {
+    color: black;
+    font-weight: bold;
+    font-family: "Font Awesome 6 Pro", "Font Awesome 6 Free";
+    font-size: 18px;
+    margin: 5px;
+}
+
+.deniedBtn {
+    margin: 10px;
+    float: right;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: red;
+    color: white;
+}
+
+.approvedBtn {
+    margin: 10px;
+    float: right;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: green;
+    color: white;
+}
+
+.failedMessage {
+    text-align: center;
+    margin-left: auto;
+    font-weight: bold;
+    font-family: "Font Awesome 6 Pro", "Font Awesome 6 Free";
 }

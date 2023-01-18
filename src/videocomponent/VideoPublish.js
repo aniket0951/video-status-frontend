@@ -2,12 +2,10 @@ import React, {useEffect, useState} from "react";
 import {ENDPOINTS} from "../helper/endpoints";
 import axios from "axios";
 import {getHeaders} from "../helper/Common";
-import {Card, Button} from "react-bootstrap";
-import "../css/style.css";
 import Swal from "sweetalert2";
-import Cookies from "js-cookie";
+import {Card} from "react-bootstrap";
 
-function VideoVerification() {
+function VideoPublish() {
     const [videos, setVideos] = useState([])
     const [failedMessage, setFailedMessage] = useState([])
     const [showFailedMessage, setShowFailedMessage] = useState(false)
@@ -17,7 +15,7 @@ function VideoVerification() {
     }, []);
 
     const fetchAllPendingVideo = () => {
-        const reqURL = ENDPOINTS.VIDEOS_FOR_VERIFICATION + "?tag=PENDING"
+        const reqURL = ENDPOINTS.VIDEOS_FOR_VERIFICATION + "?tag=APPROVE"
         axios
             .get(reqURL, {headers: getHeaders})
             .then(response => {
@@ -29,18 +27,14 @@ function VideoVerification() {
             })
     }
 
-    const approveOrDeniedVideo = (tag, obj, reason) => {
-        if (tag == "approve") {
-            tag = "APPROVE"
-        } else if (tag == "denied") {
-            tag = "DENIED"
+    const approveOrDeniedVideo = (obj) => {
+
+        const reqBody = {
+            "video_id": obj.video_id,
+            "is_publish": true
         }
-
-
-        const reqURL = ENDPOINTS.APPROVE_OR_DENIED + "?video_id=" + obj.video_id + "&video_status=" + tag + "&reason=" + reason
-
         axios
-            .post(reqURL, {}, {headers: getHeaders})
+            .post(ENDPOINTS.VIDEO_PUBLISHED, reqBody, {headers: getHeaders})
             .then(response => {
                 Swal.fire({
                     title: "Video",
@@ -63,40 +57,17 @@ function VideoVerification() {
 
     }
 
-    const showApproveDeniedAlert = (tag, obj) => {
-        if (tag == "approve") {
-            Swal.fire({
-                title: "Are you sure to approve the video",
-                icon: "success",
-                confirmButtonText: "OK",
-            }).then((result) => {
-                if (result.isConfirmed) {
+    const showApproveDeniedAlert = (obj) => {
+        Swal.fire({
+            title: "Are you sure to published the video",
+            icon: "success",
+            confirmButtonText: "OK",
+        }).then((result) => {
+            if (result.isConfirmed) {
 
-                    approveOrDeniedVideo(tag, obj, "")
-                }
-            });
-        }
-        if (tag == "denied") {
-            Swal.fire({
-                title: "Are you sure to denied the video",
-                icon: "warning",
-                confirmButtonText: "OK",
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-
-                    const {value: reason} = await Swal.fire({
-                        title: "Video Denied",
-                        input: 'text',
-                        inputLabel: 'Give a valid reason for denied video',
-                        inputPlaceholder: 'Enter your reason'
-                    })
-                    if (reason) {
-                        approveOrDeniedVideo(tag, obj, reason)
-                    }
-                }
-            });
-        }
-
+                approveOrDeniedVideo(obj)
+            }
+        });
     }
 
     const renderAllVideos = (videoInfo, index) => {
@@ -122,10 +93,8 @@ function VideoVerification() {
                 <Card.Text>{videoInfo.video_info[0].video_desc}</Card.Text>
                 <Card.Text>{videoInfo.video_info[0].created_at}</Card.Text>
                 <Card.Text>
-                    <input className="btn deniedBtn" type="submit" value="Denied"
-                           onClick={() => showApproveDeniedAlert("denied", videoInfo)}/>
-                    <input className="btn approvedBtn" type="submit" value="Approved"
-                           onClick={() => showApproveDeniedAlert("approve", videoInfo)}/>
+                    <input className="btn approvedBtn" type="submit" value="PUBLISHED"
+                           onClick={() => showApproveDeniedAlert(videoInfo)}/>
 
                 </Card.Text>
             </Card>
@@ -142,4 +111,4 @@ function VideoVerification() {
     )
 }
 
-export default VideoVerification
+export default VideoPublish
