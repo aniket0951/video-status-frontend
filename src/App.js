@@ -11,6 +11,7 @@ import AddUsers from "./userscomponent/AddUsers";
 import UpdateUsers from "./userscomponent/UpdateUsers";
 import VideoVerification from "./videocomponent/VideoVerification";
 import VideoPublish from "./videocomponent/VideoPublish";
+import VideoDetail from "./videocomponent/VideoDetail";
 import {Menu} from "antd";
 import {
     DashOutlined,
@@ -130,6 +131,7 @@ function Content() {
                 <Route path="/add-category" element={<AddVideoCategory/>}></Route>
                 <Route path={"/video-verification"} element={<VideoVerification/>}></Route>
                 <Route path={"/publish-video"} element={<VideoPublish/>}></Route>
+                <Route path={"/video-details"} element={<VideoDetail/>}></Route>
             </Routes>
         </div>
     );

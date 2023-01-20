@@ -17,6 +17,7 @@ const UPDATE_VIDEO_CATEGORY = BASE_URL + "video-category/update-category"
 const GET_ALL_VIDEOS = BASE_URL + "videos/get-all-videos"
 const UPLOAD_VIDEO = BASE_URL + "videos/add-video"
 const DELETE_VIDEO = BASE_URL + "videos/delete-video"
+const GET_FULL_VIDEO_DETAIL = BASE_URL + "video-detail/video-full-details"
 
 // video verification
 const VIDEOS_FOR_VERIFICATION = BASE_URL + "video-verification/videos-verification"
@@ -43,5 +44,6 @@ export const ENDPOINTS = {
     VIDEOS_FOR_VERIFICATION: VIDEOS_FOR_VERIFICATION,
     APPROVE_OR_DENIED: APPROVE_OR_DENIED,
     VIDEO_PUBLISHED: VIDEO_PUBLISHED,
+    GET_FULL_VIDEO_DETAIL: GET_FULL_VIDEO_DETAIL,
 }
  
