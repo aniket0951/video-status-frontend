@@ -23,8 +23,10 @@ function AdminUsers() {
     },[])
 
     const fetchAllAdminUsers = () => {
+        const url = ENDPOINTS.GET_ALL_ADMIN_USERS+"1/10"
+        const userAuthToken = Cookies.get("authToken")
         axios
-            .get(ENDPOINTS.GET_ALL_ADMIN_USERS, { headers: headers })
+            .get(url, { headers: headers })
             .then(response => {
                 setAllAdminUsers(response.data.user_data)
             })
@@ -92,11 +94,11 @@ function AdminUsers() {
         return (
             <Card style={{ width: "24rem", height: "250px" }} key={index} className="box">
                 <Card.Body>
-                    <Card.Title><h3>{userInfo.username}</h3></Card.Title>
+                    <Card.Title><h3>{userInfo.name}</h3></Card.Title>
                     <Card.Text >
                         {userInfo.email}
                     </Card.Text>
-                    <Card.Text>{userInfo.mobile}</Card.Text>
+                    <Card.Text>{userInfo.contact}</Card.Text>
                     <Card.Text>{userInfo.user_type}</Card.Text>
                     <Button type="submit" onClick={() => updateUserInfo(userInfo)} >Update Account</Button>
                     <Button style={{margin:"15px"}} onClick={() => deleteConfirmation(userInfo.id)} >Delete Account</Button>

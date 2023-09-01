@@ -1,12 +1,12 @@
 
-const BASE_URL = "http://localhost:5000/api/"
+const BASE_URL = "http://localhost:8080/api/"
 
 
 const CREATE_ADMIN_USER = BASE_URL + "create-admin-user"
-const ADMIN_USER_LOGIN = BASE_URL + "admin-user-login"
+const ADMIN_USER_LOGIN = BASE_URL + 'login-admin?'
 const USERNAME = ""
 const USER_BY_ID = BASE_URL + "get-user-byID"
-const GET_ALL_ADMIN_USERS = BASE_URL + "get-admin-users"
+const GET_ALL_ADMIN_USERS = BASE_URL + "admin-users/"
 const UPDATE_ADMIN_USER = BASE_URL + "update-admin-user"
 const DELETE_ADMIN_USER = BASE_URL + "delete-admin-user"
 
@@ -15,9 +15,11 @@ const ADD_VIDEO_CATEGORY = BASE_URL + "video-category/create-category"
 const DELETE_VIDEO_CATEGORY = BASE_URL + "video-category/delete-category"
 const UPDATE_VIDEO_CATEGORY = BASE_URL + "video-category/update-category"
 
-const GET_ALL_VIDEOS = BASE_URL + "videos/get-all-videos"
+const GET_ALL_VIDEOS_BY_ADMIN = BASE_URL + "admin-videos"
 const UPLOAD_VIDEO = BASE_URL + "videos/add-video"
 const DELETE_VIDEO = BASE_URL + "videos/delete-video"
+
+const UPDATE_VIDEO_STATUS = BASE_URL + "admin-videos/update-status?"
 
 export const ENDPOINTS = {
     ADMIN_USER_LOGIN:ADMIN_USER_LOGIN,
@@ -31,8 +33,9 @@ export const ENDPOINTS = {
     CREATE_ADMIN_USER:CREATE_ADMIN_USER,
     UPDATE_ADMIN_USER:UPDATE_ADMIN_USER,
     DELETE_ADMIN_USER:DELETE_ADMIN_USER,
-    GET_ALL_VIDEOS:GET_ALL_VIDEOS,
+    GET_ALL_VIDEOS_BY_ADMIN:GET_ALL_VIDEOS_BY_ADMIN,
     UPLOAD_VIDEO:UPLOAD_VIDEO,
     DELETE_VIDEO:DELETE_VIDEO,
+    UPDATE_VIDEO_STATUS:UPDATE_VIDEO_STATUS
 }
  

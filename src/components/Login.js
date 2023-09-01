@@ -14,17 +14,19 @@ function Landing() {
   const [loginResponse, setLoginResponse] = useState("");
 
   const loginUser = () => {
-    const requestOption = {
-      email: email,
-      password: password,
-    };
+    const url = ENDPOINTS.ADMIN_USER_LOGIN + "email=" + email + "&password=" + password
     axios
-    .post(ENDPOINTS.ADMIN_USER_LOGIN, requestOption)
+    .get(url)
     .then((response) => {
-      ENDPOINTS.USERNAME = response.data.user_data.username 
-      Cookies.set("authToken", response.data.user_data.token) 
-      navigation("/admin-home", { state: response.data });
-      window.location.reload(true)
+      if (response.status === 200){
+        console.log("API response : "+ response.data.message);
+        ENDPOINTS.USERNAME = response.data.user_data.name 
+        Cookies.set("authToken", response.data.user_data.access_token) 
+        navigation("/admin-home", { state: response.data });
+        window.location.reload(true)
+      }
+      
+
     })
     .catch((error) => {
       setIsFailedResponse(false)
