@@ -16,10 +16,13 @@ const DELETE_VIDEO_CATEGORY = BASE_URL + "video-category/delete-category"
 const UPDATE_VIDEO_CATEGORY = BASE_URL + "video-category/update-category"
 
 const GET_ALL_VIDEOS_BY_ADMIN = BASE_URL + "admin-videos"
-const UPLOAD_VIDEO = BASE_URL + "videos/add-video"
+const UPLOAD_VIDEO = BASE_URL + "upload-video"
 const DELETE_VIDEO = BASE_URL + "videos/delete-video"
+const FETCH_VERIFY_VIDEOS = BASE_URL + "admin-videos/verify-videos"
 
 const UPDATE_VIDEO_STATUS = BASE_URL + "admin-videos/update-status?"
+const PUBLISH_VIDEO = BASE_URL + "admin-videos/publish-video"
+const FETCH_PUBLISH_VIDEO = BASE_URL + "published-videos"
 
 export const ENDPOINTS = {
     ADMIN_USER_LOGIN:ADMIN_USER_LOGIN,
@@ -36,6 +39,9 @@ export const ENDPOINTS = {
     GET_ALL_VIDEOS_BY_ADMIN:GET_ALL_VIDEOS_BY_ADMIN,
     UPLOAD_VIDEO:UPLOAD_VIDEO,
     DELETE_VIDEO:DELETE_VIDEO,
-    UPDATE_VIDEO_STATUS:UPDATE_VIDEO_STATUS
+    UPDATE_VIDEO_STATUS:UPDATE_VIDEO_STATUS,
+    FETCH_VERIFY_VIDEOS:FETCH_VERIFY_VIDEOS,
+    PUBLISH_VIDEO:PUBLISH_VIDEO,
+    FETCH_PUBLISH_VIDEO:FETCH_PUBLISH_VIDEO
 }
  

@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import "../css/style.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { ENDPOINTS } from "../helper/endpoints";
 import Swal from "sweetalert2";
-import delteImg from "../asserts/delete.png";
 import Button from 'react-bootstrap/Button';
 
-function VerifyVideos(){
-    const userAuthToken = Cookies.get("authToken");
+function PublishVideos() {
+
+   const userAuthToken = Cookies.get("authToken");
 
     const headers = {
         "Content-Type": "application/json",
         Authorization: userAuthToken,
       };
     
-
     const [videoData, setAllVideosData] = useState([]);
     const [videoNotAvailable, setvideoNotAvailable] = useState(false)
 
@@ -28,13 +26,15 @@ function VerifyVideos(){
 
     const fetchAllVideos = () => {
         console.log("Fetch all video get called");
-        const url = ENDPOINTS.FETCH_VERIFY_VIDEOS + "/1/10"
+        const url = ENDPOINTS.FETCH_PUBLISH_VIDEO + "/1/10"
         axios
           .get(url, { headers: headers })
           .then((response) => {
+            //console.log("Video API Response : ", response.data.data);
             setAllVideosData(response.data.video_data);
           })
           .catch((error) => {
+            alert(error.response.data.message);
             setAllVideosData([])
             setvideoNotAvailable(true);
           });
@@ -78,7 +78,7 @@ function VerifyVideos(){
             <Card.Subtitle style={{color:"red"}}>{videoInfo.status}</Card.Subtitle>
             <Card.Subtitle style={{marginTop:"5px"}}>UploadAt : {videoInfo.uploaded_at}</Card.Subtitle>
             <Card.Subtitle style={{marginTop:"5px"}}>VerifiedAt  : {videoInfo.verify_at}</Card.Subtitle>
-            <Button variant="primary" style={{marginTop:"5px", color:"white", backgroundColor:"green"}} onClick={()=> publishVideo(videoInfo.video_id)} >Publish Video</Button>
+            <Button variant="primary" style={{marginTop:"5px", color:"white", backgroundColor:"green"}} onClick={()=> publishVideo(videoInfo.video_id)} >UnPublish Video</Button>
             </Card.Body>
     
           </Card>
@@ -97,4 +97,4 @@ function VerifyVideos(){
       );
 }
 
-export default VerifyVideos;
+export default PublishVideos;

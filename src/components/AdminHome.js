@@ -10,14 +10,11 @@ import delteImg from "../asserts/delete.png";
 import Button from 'react-bootstrap/Button';
 
 function AdminHome() {
-  const location = useLocation();
   const userAuthToken = Cookies.get("authToken");
   const [openUploadVideo, setOpenUploadVideo] = useState(false);
   const [videoTitle, setVideoTitle] = useState("");
-  const [videoDesc, setVideoDesc] = useState("");
   const [myFile, setFile] = useState("");
-  const [videoCategory, setAllVideoCategory] = useState([])
-  const [videoCatId, setVideoCatId] = useState("")
+  
 
   const headers = {
     "Content-Type": "application/json",
@@ -46,7 +43,6 @@ function AdminHome() {
     axios
       .get(url, { headers: headers })
       .then((response) => {
-        //console.log("Video API Response : ", response.data.data);
         setAllVideosData(response.data.data);
       })
       .catch((error) => {
@@ -54,23 +50,10 @@ function AdminHome() {
       });
   };
 
-  const fetchVideoCategory = () => {
-    axios
-        .get(ENDPOINTS.GET_ALL_VIDEO_CATEGORY, {headers:headers})
-        .then(response => {
-          setAllVideoCategory(response.data.video_data)
-          if (response.data.video_data.length >= 1){
-            setVideoCatId(response.data.video_data[0]["id"])
-          }
-        })
-        .catch(error => {
-          alert(error.response.data.error)
-        })
-  }
+
 
   const showUploadVideo = () => {
     setOpenUploadVideo(true);
-    fetchVideoCategory()
   };
 
   const showDeleteWarning= (obj) => {
@@ -91,10 +74,8 @@ function AdminHome() {
 
     // Update the formData object
     formData.append("title", videoTitle);
-    formData.append("video", myFile);
-    formData.append("desc", videoDesc);
-    formData.append("is_active", true);
-    formData.append("video_cat_id", videoCatId);
+    formData.append("video_file", myFile);
+    formData.append("status", "VIDEO_INIT");
 
     axios
         .post(ENDPOINTS.UPLOAD_VIDEO, formData, {headers:multiPartHeadr})
@@ -177,7 +158,7 @@ function AdminHome() {
   const renderAllVideos = (videoInfo, index) => {
     return (
       <Card
-        style={{ width: "50rem", height: "400px" }}
+        style={{ width: "60rem", height: "400px" }}
         key={index}
         className="box"
       >
@@ -218,21 +199,10 @@ function AdminHome() {
                   />
                 </div>
               </Card.Title>
+
               <Card.Title>
                 <div>
-                  <label>Video Description</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter user name"
-                    value={videoDesc}
-                    onChange={(event) => setVideoDesc(event.target.value)}
-                  />
-                </div>
-              </Card.Title>
-              <Card.Title>
-                <div>
-                  <label>Video File</label>
+                  <label style={{margin:"5px"}}>Video File</label>
                   <input
                     type="file"
                     className="form-control"
@@ -241,29 +211,13 @@ function AdminHome() {
                   />
                 </div>
               </Card.Title>
-              <Card.Text>
-                <label>
-
-                  Select video category
-                </label>
-                  <div>
-
-                      <select value={videoCatId} onChange={(e) => setVideoCatId(e.target.value)}>
-                        {videoCategory.map((video) => (
-                            <option value={video.id} >{video.category_name}</option>
-                        ))}
-                      </select>
-
-                  </div>
-              </Card.Text>
               <Button onClick={() => onFileUpload()} >Upload</Button>
             </Card.Body>
           </Card>
         </div>
       ) : (
         <>
-        <h2 style={{marginLeft:"10px"}}>Recent video uploaded</h2>
-          
+        
           <div style={{ display: "flex", justifyContent: "right" }}>
             <Button
               style={{ marginTop: "10px" }}
