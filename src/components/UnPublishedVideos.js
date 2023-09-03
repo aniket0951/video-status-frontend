@@ -7,9 +7,8 @@ import { ENDPOINTS } from "../helper/endpoints";
 import Swal from "sweetalert2";
 import Button from 'react-bootstrap/Button';
 
-function PublishVideos() {
-
-   const userAuthToken = Cookies.get("authToken");
+function UnPublishedVideos() {
+    const userAuthToken = Cookies.get("authToken");
 
     const headers = {
         "Content-Type": "application/json",
@@ -26,7 +25,7 @@ function PublishVideos() {
 
     const fetchAllVideos = () => {
         console.log("Fetch all video get called");
-        const url = ENDPOINTS.FETCH_PUBLISH_VIDEO + "/1/10"
+        const url = ENDPOINTS.FETCH_UNPUBLISH_VIDEO + "/1/10"
         axios
           .get(url, { headers: headers })
           .then((response) => {
@@ -42,25 +41,24 @@ function PublishVideos() {
 
     const publishVideo = (vid) =>{
       
-      const reqUrl = ENDPOINTS.UNPUBLISH_VIDEO + "/" + vid
-      console.log("Video going to published : " + reqUrl);
-      axios
-      .put(reqUrl, null, {headers:headers})
-      .then(response => {
-        Swal.fire({
-          title: response.data.message,
-          icon: "success",
-          confirmButtonText: "OK",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            setAllVideosData([])
-            fetchAllVideos()
-          }
-        });
-      })
-      .catch(error =>{
-        console.log("Error Excpected : " + error);
-      })
+        console.log("Video going to published : " + vid);
+        const reqUrl = ENDPOINTS.PUBLISH_VIDEO + "/" + vid
+        axios
+        .post(reqUrl, null, {headers:headers})
+        .then(response => {
+          Swal.fire({
+            title: response.data.message,
+            icon: "success",
+            confirmButtonText: "OK",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              fetchAllVideos()
+            }
+          });
+        })
+        .catch(error =>{
+          console.log("Error Excpected : " + error);
+        })
     }
       
 
@@ -80,7 +78,7 @@ function PublishVideos() {
             <Card.Subtitle style={{color:"red"}}>{videoInfo.status}</Card.Subtitle>
             <Card.Subtitle style={{marginTop:"5px"}}>PublishedAt : {videoInfo.published_at}</Card.Subtitle>
             <Card.Subtitle style={{marginTop:"5px"}}>VerifiedAt  : {videoInfo.verified_at}</Card.Subtitle>
-            <Button variant="primary" style={{marginTop:"5px", color:"white", backgroundColor:"green"}} onClick={()=> publishVideo(videoInfo.video_id)} >UnPublish Video</Button>
+            <Button variant="primary" style={{marginTop:"5px", color:"white", backgroundColor:"green"}} onClick={()=> publishVideo(videoInfo.video_id)} >Publish Video</Button>
             </Card.Body>
     
           </Card>
@@ -99,4 +97,4 @@ function PublishVideos() {
       );
 }
 
-export default PublishVideos;
+export default UnPublishedVideos;

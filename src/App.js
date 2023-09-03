@@ -10,6 +10,7 @@ import VerifyVideos from "./components/VerifyVideos";
 import PublishVideos from "./components/PublishedVideos";
 import AdminUsers from "./userscomponent/AdminUsers";
 import AddUsers from "./userscomponent/AddUsers";
+import UnPublishedVideos from "./components/UnPublishedVideos";
 import UpdateUsers from "./userscomponent/UpdateUsers";
 import { Menu } from "antd";
 import {
@@ -90,6 +91,8 @@ function AppSideBar() {
           
           { label: "Verify Videos", key: "/verify-videos" },
           { label: "Publish Videos", key: "/publish-videos" },
+          { label: "UnPublish Videos", key: "/unpublish-videos" },
+
           {
             label: "Video Cat",
             key: "/video_cat",
@@ -123,6 +126,8 @@ function Content() {
         <Route path="/add-category" element={<AddVideoCategory/>}></Route>
         <Route path="/verify-videos" element={<VerifyVideos/>}></Route>
         <Route path="/publish-videos" element={<PublishVideos/>}></Route>
+        <Route path="/unpublish-videos" element={<UnPublishedVideos/>}></Route>
+
 
       </Routes>
     </div>
