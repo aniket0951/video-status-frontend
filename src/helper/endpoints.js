@@ -20,6 +20,10 @@ const UPLOAD_VIDEO = BASE_URL + "upload-video"
 const DELETE_VIDEO = BASE_URL + "videos/delete-video"
 const FETCH_VERIFY_VIDEOS = BASE_URL + "admin-videos/verify-videos"
 
+// verification process failed 
+const UNVERIFY_VIDEO = BASE_URL + "admin-videos/make-verification-failed"
+const REJECT_PUBLISH_VIDEO = BASE_URL + "admin-videos/make-unpublish-video"
+
 const UPDATE_VIDEO_STATUS = BASE_URL + "admin-videos/update-status?"
 const PUBLISH_VIDEO = BASE_URL + "admin-videos/publish-video"
 const FETCH_PUBLISH_VIDEO = BASE_URL + "published-videos"
@@ -46,6 +50,8 @@ export const ENDPOINTS = {
     PUBLISH_VIDEO:PUBLISH_VIDEO,
     FETCH_PUBLISH_VIDEO:FETCH_PUBLISH_VIDEO,
     UNPUBLISH_VIDEO:UNPUBLISH_VIDEO,
-    FETCH_UNPUBLISH_VIDEO:FETCH_UNPUBLISH_VIDEO
+    FETCH_UNPUBLISH_VIDEO:FETCH_UNPUBLISH_VIDEO,
+    UNVERIFY_VIDEO:UNVERIFY_VIDEO,
+    REJECT_PUBLISH_VIDEO:REJECT_PUBLISH_VIDEO
 }
  

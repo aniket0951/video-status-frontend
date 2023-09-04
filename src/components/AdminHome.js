@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import "../css/style.css";
 import axios from "axios";
@@ -8,10 +7,12 @@ import { ENDPOINTS } from "../helper/endpoints";
 import Swal from "sweetalert2";
 import delteImg from "../asserts/delete.png";
 import Button from 'react-bootstrap/Button';
+import { margin } from "@mui/system";
 
 function AdminHome() {
   const userAuthToken = Cookies.get("authToken");
   const [openUploadVideo, setOpenUploadVideo] = useState(false);
+  const [isVideoNotAvailable, setIsVideoNotAvailable] = useState(false);
   const [videoTitle, setVideoTitle] = useState("");
   const [myFile, setFile] = useState("");
   
@@ -36,7 +37,6 @@ function AdminHome() {
   }, []);
 
 
-
   const fetchAllVideos = () => {
     console.log("Fetch all video get called");
     const url = ENDPOINTS.GET_ALL_VIDEOS_BY_ADMIN + "/" + "1/10"
@@ -46,11 +46,10 @@ function AdminHome() {
         setAllVideosData(response.data.data);
       })
       .catch((error) => {
-        alert(error.response.data.error);
+        //alert(error.response.data.error);
+        setIsVideoNotAvailable(true)
       });
   };
-
-
 
   const showUploadVideo = () => {
     setOpenUploadVideo(true);
@@ -67,7 +66,51 @@ function AdminHome() {
         deleteVideo(obj)
       }
     });
+  };
+
+  const showUnVerifyWarning= (obj) => {
+    Swal.fire({
+      title: "UnVerify Video",
+      icon: "warning",
+      text:"are you sure to unverify the video",
+      confirmButtonText: "OK",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        //UnVerifyVideo(obj)
+        showDailogTaikingReason(obj)
+      }
+    });
+  };
+
+  const showDailogTaikingReason = (obj) => {
+    Swal.fire({
+      title: 'Give the reason to unverify the video',
+      input: 'text',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Done',
+      showLoaderOnConfirm: true,
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+      if (result.isConfirmed) {
+        obj["reason"] = result.value
+        UnVerifyVideo(obj);
+      }
+    })
+  };
+
+  const ShowSuccessDialog= (message) =>{
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: message,
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
+
   const onFileUpload = () => {
     // Create an object of formData
     const formData = new FormData();
@@ -142,6 +185,7 @@ function AdminHome() {
       }).then((result) => {
         if (result.isConfirmed) {
           setOpenUploadVideo(false)
+          setAllVideosData([])
           fetchAllVideos()
         }
       });
@@ -152,6 +196,26 @@ function AdminHome() {
         icon: "error",
         confirmButtonText: "OK",
       })
+    })
+  }
+
+  const UnVerifyVideo = (obj) => {
+    const requestOption = {
+      "video_id":obj.id,
+      "status":"VIDEO_VIRIFICATION_FAILED",
+      "reason": obj.reason
+    }
+
+    const requestURL = ENDPOINTS.UNVERIFY_VIDEO
+    axios
+    .post(requestURL, requestOption, {headers:headers})
+    .then(response => {
+      ShowSuccessDialog(response.data.message)
+      setAllVideosData([])
+      fetchAllVideos()
+    })
+    .catch(error => {
+      alert(error.response.data.error)
     })
   }
 
@@ -171,14 +235,14 @@ function AdminHome() {
         <Card.Title >Title : {videoInfo.title}</Card.Title>
         <Card.Subtitle style={{color:"red"}}>{videoInfo.status}</Card.Subtitle>
         <Card.Subtitle style={{marginTop:"5px"}}>UploadAt : {videoInfo.created_at}</Card.Subtitle>
-        <Button variant="primary" style={{marginTop:"5px", color:"white", backgroundColor:"green"}} onClick={()=> verifyVideo(videoInfo.id)}>Verify Video</Button>
+        <Button  style={{margin:"5px", color:"white", backgroundColor:"green"}} onClick={()=> verifyVideo(videoInfo.id)}>Verify Video</Button>
+        <Button  style={{margin:"5px", color:"white", backgroundColor:"red"}} onClick={()=> showUnVerifyWarning(videoInfo)}>UnVerify Video</Button>
+      
         </Card.Body>
 
       </Card>
     );
   };
-
-
 
 
   return (
@@ -217,7 +281,16 @@ function AdminHome() {
         </div>
       ) : (
         <>
-        
+        {
+          isVideoNotAvailable ? (
+            <center>
+              <h1 >Video not available</h1>
+            </center>
+          )
+          :(
+            <h5></h5>
+          )
+        }
           <div style={{ display: "flex", justifyContent: "right" }}>
             <Button
               style={{ marginTop: "10px" }}

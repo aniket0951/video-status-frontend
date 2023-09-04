@@ -9,6 +9,7 @@ import UserProfile from "./components/UserProfile";
 import VerifyVideos from "./components/VerifyVideos";
 import PublishVideos from "./components/PublishedVideos";
 import AdminUsers from "./userscomponent/AdminUsers";
+import VerificationFailed from "./components/VerificationFailed";
 import AddUsers from "./userscomponent/AddUsers";
 import UnPublishedVideos from "./components/UnPublishedVideos";
 import UpdateUsers from "./userscomponent/UpdateUsers";
@@ -92,6 +93,7 @@ function AppSideBar() {
           { label: "Verify Videos", key: "/verify-videos" },
           { label: "Publish Videos", key: "/publish-videos" },
           { label: "UnPublish Videos", key: "/unpublish-videos" },
+          { label: "Verification Failed Videos", key: "/verification-failed-videos" },
 
           {
             label: "Video Cat",
@@ -127,6 +129,7 @@ function Content() {
         <Route path="/verify-videos" element={<VerifyVideos/>}></Route>
         <Route path="/publish-videos" element={<PublishVideos/>}></Route>
         <Route path="/unpublish-videos" element={<UnPublishedVideos/>}></Route>
+        <Route path="/verification-failed-videos" element={<VerificationFailed/>}></Route>
 
 
       </Routes>

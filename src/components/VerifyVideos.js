@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import "../css/style.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { ENDPOINTS } from "../helper/endpoints";
 import Swal from "sweetalert2";
-import delteImg from "../asserts/delete.png";
 import Button from 'react-bootstrap/Button';
 
 function VerifyVideos(){
@@ -59,6 +57,68 @@ function VerifyVideos(){
       .catch(error =>{
         console.log("Error Excpected : " + error);
       })
+    };
+
+    const showUnPublishWarning= (obj) => {
+      Swal.fire({
+        title: "Reject Publish Video",
+        icon: "warning",
+        text:"are you sure to reject publish the video",
+        confirmButtonText: "OK",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          //UnVerifyVideo(obj)
+          showDailogTaikingReason(obj)
+        }
+      });
+    };
+  
+    const showDailogTaikingReason = (obj) => {
+      Swal.fire({
+        title: 'Give the reason to reject the publish video',
+        input: 'text',
+        inputAttributes: {
+          autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Done',
+        showLoaderOnConfirm: true,
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+        if (result.isConfirmed) {
+          obj["reason"] = result.value
+          rejectPublishVideo(obj);
+        }
+      })
+    };
+
+    const ShowSuccessDialog= (message) =>{
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: message,
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
+
+    const rejectPublishVideo = (obj) => {
+      const requestOption = {
+        "video_id":obj.video_id,
+        "status":"VIDEO_UNPUBLISHED",
+        "reason":obj.reason
+      }
+
+      axios
+      .post(ENDPOINTS.REJECT_PUBLISH_VIDEO, requestOption, {headers:headers})
+      .then(response => {
+        ShowSuccessDialog(response.data.message)
+        setAllVideosData([])
+        fetchAllVideos()
+      })
+      .catch(error =>{
+        alert(error)
+      })
     }
       
 
@@ -78,7 +138,9 @@ function VerifyVideos(){
             <Card.Subtitle style={{color:"red"}}>{videoInfo.status}</Card.Subtitle>
             <Card.Subtitle style={{marginTop:"5px"}}>UploadAt : {videoInfo.uploaded_at}</Card.Subtitle>
             <Card.Subtitle style={{marginTop:"5px"}}>VerifiedAt  : {videoInfo.verify_at}</Card.Subtitle>
-            <Button variant="primary" style={{marginTop:"5px", color:"white", backgroundColor:"green"}} onClick={()=> publishVideo(videoInfo.video_id)} >Publish Video</Button>
+            <Button style={{margin:"5px", color:"white", backgroundColor:"green"}} onClick={()=> publishVideo(videoInfo.video_id)} >Publish Video</Button>
+            <Button style={{margin:"5px", color:"white", backgroundColor:"red"}} onClick={()=> showUnPublishWarning(videoInfo)} >Reject Publish</Button>
+            
             </Card.Body>
     
           </Card>
