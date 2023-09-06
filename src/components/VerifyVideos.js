@@ -6,10 +6,11 @@ import Cookies from "js-cookie";
 import { ENDPOINTS } from "../helper/endpoints";
 import Swal from "sweetalert2";
 import Button from 'react-bootstrap/Button';
+import {useNavigate} from "react-router-dom";
 
 function VerifyVideos(){
     const userAuthToken = Cookies.get("authToken");
-
+    const navigation = useNavigate()
     const headers = {
         "Content-Type": "application/json",
         Authorization: userAuthToken,
@@ -100,7 +101,7 @@ function VerifyVideos(){
         showConfirmButton: false,
         timer: 1500
       })
-    }
+    };
 
     const rejectPublishVideo = (obj) => {
       const requestOption = {
@@ -119,7 +120,14 @@ function VerifyVideos(){
       .catch(error =>{
         alert(error)
       })
-    }
+    };
+
+    const nevigateToShowFullDetailOfVideo = (obj) => {
+      console.log("OBJ for navigate : ", obj);
+      obj["call_for"] = "VERIFY_VIDEO_DETAILS"
+      navigation("/video-full-details",{ state: obj })
+      //console.log("OBJ : ", obj);
+    };
       
 
     const renderAllVideos = (videoInfo, index) => {
@@ -140,12 +148,13 @@ function VerifyVideos(){
             <Card.Subtitle style={{marginTop:"5px"}}>VerifiedAt  : {videoInfo.verify_at}</Card.Subtitle>
             <Button style={{margin:"5px", color:"white", backgroundColor:"green"}} onClick={()=> publishVideo(videoInfo.video_id)} >Publish Video</Button>
             <Button style={{margin:"5px", color:"white", backgroundColor:"red"}} onClick={()=> showUnPublishWarning(videoInfo)} >Reject Publish</Button>
+            <Button style={{ position: "absolute", right: 15, margin:"5px" }} onClick={()=> nevigateToShowFullDetailOfVideo(videoInfo)}>show full details</Button>
             
             </Card.Body>
     
           </Card>
         );
-      };  
+    };  
     
       return (
         <>

@@ -6,10 +6,11 @@ import Cookies from "js-cookie";
 import { ENDPOINTS } from "../helper/endpoints";
 import Swal from "sweetalert2";
 import Button from 'react-bootstrap/Button';
+import {useNavigate} from "react-router-dom";
 
 function UnPublishedVideos() {
     const userAuthToken = Cookies.get("authToken");
-
+    const navigation = useNavigate()
     const headers = {
         "Content-Type": "application/json",
         Authorization: userAuthToken,
@@ -29,7 +30,6 @@ function UnPublishedVideos() {
         axios
           .get(url, { headers: headers })
           .then((response) => {
-            //console.log("Video API Response : ", response.data.data);
             setAllVideosData(response.data.video_data);
           })
           .catch((error) => {
@@ -60,6 +60,12 @@ function UnPublishedVideos() {
           console.log("Error Excpected : " + error);
         })
     }
+
+    const nevigateToShowFullDetailOfVideo = (obj) => {
+      obj["call_for"] = "PUBLISH_VIDEO"
+      navigation("/video-full-details",{ state: obj })
+      //console.log("OBJ : ", obj);
+    };
       
 
     const renderAllVideos = (videoInfo, index) => {
@@ -70,6 +76,7 @@ function UnPublishedVideos() {
             className="box"
           >
             <Card.Body>
+
               <video width={400} height={200} style={{margin:"auto"}} controls>
                 <source src={videoInfo.video_address} type="video/mp4" ></source>
               </video>
@@ -79,6 +86,8 @@ function UnPublishedVideos() {
             <Card.Subtitle style={{marginTop:"5px"}}>PublishedAt : {videoInfo.published_at}</Card.Subtitle>
             <Card.Subtitle style={{marginTop:"5px"}}>VerifiedAt  : {videoInfo.verified_at}</Card.Subtitle>
             <Button variant="primary" style={{marginTop:"5px", color:"white", backgroundColor:"green"}} onClick={()=> publishVideo(videoInfo.video_id)} >Publish Video</Button>
+            <Button style={{ position: "absolute", right: 15, marginTop:"10px" }} onClick={()=> nevigateToShowFullDetailOfVideo(videoInfo)}>show full details</Button>
+            
             </Card.Body>
     
           </Card>

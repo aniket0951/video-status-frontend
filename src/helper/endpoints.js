@@ -25,6 +25,12 @@ const UNVERIFY_VIDEO = BASE_URL + "admin-videos/make-verification-failed"
 const REJECT_PUBLISH_VIDEO = BASE_URL + "admin-videos/make-unpublish-video"
 const FETCH_VERIFICATION_FAILED = BASE_URL + "fetch-verification-failed-videos"
 
+
+// video full details
+const FETCH_PUBLISH_VIDEO_DETAILS = BASE_URL + "details/publish-video-details"
+const FETCH_VIDEO_BY_ADMIN_DETAILS = BASE_URL + "details/video-by-admin-details"
+const FETCH_VERIFY_VIDEO_DETAILS = BASE_URL + "details/verify-video-details"
+
 const UPDATE_VIDEO_STATUS = BASE_URL + "admin-videos/update-status?"
 const PUBLISH_VIDEO = BASE_URL + "admin-videos/publish-video"
 const FETCH_PUBLISH_VIDEO = BASE_URL + "published-videos"
@@ -54,6 +60,9 @@ export const ENDPOINTS = {
     FETCH_UNPUBLISH_VIDEO:FETCH_UNPUBLISH_VIDEO,
     UNVERIFY_VIDEO:UNVERIFY_VIDEO,
     REJECT_PUBLISH_VIDEO:REJECT_PUBLISH_VIDEO,
-    FETCH_VERIFICATION_FAILED:FETCH_VERIFICATION_FAILED
+    FETCH_VERIFICATION_FAILED:FETCH_VERIFICATION_FAILED,
+    FETCH_PUBLISH_VIDEO_DETAILS:FETCH_PUBLISH_VIDEO_DETAILS,
+    FETCH_VIDEO_BY_ADMIN_DETAILS:FETCH_VIDEO_BY_ADMIN_DETAILS,
+    FETCH_VERIFY_VIDEO_DETAILS:FETCH_VERIFY_VIDEO_DETAILS
 }
  

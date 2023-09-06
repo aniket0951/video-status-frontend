@@ -12,6 +12,7 @@ import AdminUsers from "./userscomponent/AdminUsers";
 import VerificationFailed from "./components/VerificationFailed";
 import AddUsers from "./userscomponent/AddUsers";
 import UnPublishedVideos from "./components/UnPublishedVideos";
+import VideoFullDetails from "./components/VideoFullDetails";
 import UpdateUsers from "./userscomponent/UpdateUsers";
 import { Menu } from "antd";
 import {
@@ -130,7 +131,7 @@ function Content() {
         <Route path="/publish-videos" element={<PublishVideos/>}></Route>
         <Route path="/unpublish-videos" element={<UnPublishedVideos/>}></Route>
         <Route path="/verification-failed-videos" element={<VerificationFailed/>}></Route>
-
+        <Route path="/video-full-details" element={<VideoFullDetails/>}></Route>
 
       </Routes>
     </div>

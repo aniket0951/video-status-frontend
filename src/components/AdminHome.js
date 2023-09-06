@@ -8,14 +8,17 @@ import Swal from "sweetalert2";
 import delteImg from "../asserts/delete.png";
 import Button from 'react-bootstrap/Button';
 import { margin } from "@mui/system";
+import {useNavigate} from "react-router-dom";
+
 
 function AdminHome() {
+  const navigation = useNavigate()
+
   const userAuthToken = Cookies.get("authToken");
   const [openUploadVideo, setOpenUploadVideo] = useState(false);
   const [isVideoNotAvailable, setIsVideoNotAvailable] = useState(false);
   const [videoTitle, setVideoTitle] = useState("");
   const [myFile, setFile] = useState("");
-  
 
   const headers = {
     "Content-Type": "application/json",
@@ -218,6 +221,11 @@ function AdminHome() {
       alert(error.response.data.error)
     })
   }
+  const nevigateToShowFullDetailOfVideo = (obj) => {
+    obj["call_for"] = "VIDEO_BY_ADMIN"
+    navigation("/video-full-details",{ state: obj })
+    //console.log("OBJ : ", obj);
+  };
 
   const renderAllVideos = (videoInfo, index) => {
     return (
@@ -237,6 +245,7 @@ function AdminHome() {
         <Card.Subtitle style={{marginTop:"5px"}}>UploadAt : {videoInfo.created_at}</Card.Subtitle>
         <Button  style={{margin:"5px", color:"white", backgroundColor:"green"}} onClick={()=> verifyVideo(videoInfo.id)}>Verify Video</Button>
         <Button  style={{margin:"5px", color:"white", backgroundColor:"red"}} onClick={()=> showUnVerifyWarning(videoInfo)}>UnVerify Video</Button>
+        <Button style={{ position: "absolute", right: 15, marginTop:"5px" }} onClick={()=> nevigateToShowFullDetailOfVideo(videoInfo)}>show full details</Button>
       
         </Card.Body>
 
