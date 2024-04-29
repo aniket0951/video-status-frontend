@@ -1,4 +1,7 @@
 
+
+// const BASE_URL = "http://localhost:5000/api/"
+const BASE_URL = "http://13.233.96.169:8080/api/"
 const BASE_URL = "http://localhost:8080/api/"
 
 
@@ -18,6 +21,14 @@ const UPDATE_VIDEO_CATEGORY = BASE_URL + "video-category/update-category"
 const GET_ALL_VIDEOS_BY_ADMIN = BASE_URL + "admin-videos"
 const UPLOAD_VIDEO = BASE_URL + "upload-video"
 const DELETE_VIDEO = BASE_URL + "videos/delete-video"
+
+const ACTIVE_VIDEOS = BASE_URL + "inactive-video/"
+
+// WallPaper
+const UPLOAD_WALLPAPER = BASE_URL + "add-wallpaper"
+const GET_ALL_WALLPAPER = BASE_URL + "get-wallpapers"
+const ACTIVE_WALLPAPER = BASE_URL + "active-wallpaper/"
+
 const FETCH_VERIFY_VIDEOS = BASE_URL + "admin-videos/verify-videos"
 
 // verification process failed 
@@ -52,6 +63,10 @@ export const ENDPOINTS = {
     GET_ALL_VIDEOS_BY_ADMIN:GET_ALL_VIDEOS_BY_ADMIN,
     UPLOAD_VIDEO:UPLOAD_VIDEO,
     DELETE_VIDEO:DELETE_VIDEO,
+    UPLOAD_WALLPAPER:UPLOAD_WALLPAPER,
+    GET_ALL_WALLPAPER:GET_ALL_WALLPAPER,
+    ACTIVE_WALLPAPER:ACTIVE_WALLPAPER,
+    ACTIVE_VIDEOS:ACTIVE_VIDEOS,
     UPDATE_VIDEO_STATUS:UPDATE_VIDEO_STATUS,
     FETCH_VERIFY_VIDEOS:FETCH_VERIFY_VIDEOS,
     PUBLISH_VIDEO:PUBLISH_VIDEO,
@@ -64,5 +79,6 @@ export const ENDPOINTS = {
     FETCH_PUBLISH_VIDEO_DETAILS:FETCH_PUBLISH_VIDEO_DETAILS,
     FETCH_VIDEO_BY_ADMIN_DETAILS:FETCH_VIDEO_BY_ADMIN_DETAILS,
     FETCH_VERIFY_VIDEO_DETAILS:FETCH_VERIFY_VIDEO_DETAILS
+
 }
  

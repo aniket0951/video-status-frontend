@@ -66,10 +66,13 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  gap: 10px;
 }
+
 
 .grid > div {
   flex-basis: calc(50% - 40px);
+  margin: 10px;
 }
 
 .boxy {
@@ -79,7 +82,7 @@
   margin-left: auto;
   margin-right: auto;
 }
-.boxy:hover {
+.oxy:hover {
   animation: boxyRotation 4s infinite linear;
 }
 
@@ -133,4 +136,91 @@
 
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Adjust the gap between cards */
+}
+
+.card {
+  width: calc(33.33% - 15px); /* Adjust card width as needed */
+  /* Subtract the gap value to ensure proper spacing */
+  margin-bottom: 20px; /* Add margin at the bottom of each card */
+  border: 1px solid #ccc; /* Example border style */
+  border-radius: 5px;
+  overflow: hidden;
+  transition: transform 0.3s ease; /* Add transition for smooth hover effect */
+  position: relative; /* Position relative for absolute button positioning */
+}
+
+.card:hover,
+.card.hovered {
+  transform: scale(1.1); /* Example: Increase size of card on hover */
+}
+
+.card-image {
+  width: 100%;
+  /* height: auto; */
+  height: 250px;
+  object-fit: cover;
+  cursor: pointer; /* Change cursor to indicate clickable image */
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-title {
+  margin-top: 0;
+}
+
+.card-date {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.inactive-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px; /* Position button at the right side */
+  background-color: #f44336; /* Example button color */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold
+}
+
+.inactive-button:hover {
+  background-color: #d32f2f; /* Example button color on hover */
+}
+
+.next-btn-div {
+  margin-top: 10px;
+  margin-bottom: 50px;
+  margin-right: 50px;
+  right: 10px; 
+  text-align: right;
+}
+
+.next-btn { /* Example button color */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.prev-btn {
+  margin-right: 20px;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
 }

@@ -14,32 +14,24 @@ import {
   MDBListGroup,
   MDBListGroupItem
 } from 'mdb-react-ui-kit';
-import Cookies from 'js-cookie';
 import axios from 'axios';
 import { ENDPOINTS } from '../helper/endpoints';
+import {getHeaders} from "../helper/Common";
 
 export default function UserProfile() {
-    const userAuthToken = Cookies.get("authToken")
+
     const [userData, setUserData] = useState({})
-    const [isAPIFetched, setIsAPIFetched] = useState(false)
-    
-    const headers = {
-        "Content-Type": "application/json",
-        Authorization: userAuthToken,
-    };
+
 
     
     React.useEffect(() => {
-      console.log("use effect get called..");
-      // setIsAPIFetched(true)
       getUserInformation()
     },[])
 
     const getUserInformation= () => {
         axios
-        .get(ENDPOINTS.USER_BY_ID, {headers:headers})
+        .get(ENDPOINTS.USER_BY_ID, {headers:getHeaders})
         .then(response => {
-            setIsAPIFetched(false)
             setUserData(response.data.user_data)
         })
         .catch(error => {

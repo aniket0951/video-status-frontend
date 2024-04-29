@@ -1,22 +1,16 @@
 import React, {useEffect, useState} from "react";
-import Cookies from "js-cookie";
 import axios from "axios";
 import {ENDPOINTS} from "../helper/endpoints";
 import "../css/style.css"
 import {  Card, Button } from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
+import {getHeaders} from "../helper/Common";
 
 function AdminUsers() {
     const navigation = useNavigate()
     const [users, setAllAdminUsers] = useState([])
 
-    const userAuthToken = Cookies.get("authToken")
-
-    const headers = {
-        "Content-Type": "application/json",
-        Authorization: userAuthToken,
-    };
 
     useEffect(()=>{
         fetchAllAdminUsers()
@@ -26,6 +20,9 @@ function AdminUsers() {
         const url = ENDPOINTS.GET_ALL_ADMIN_USERS+"1/10"
         const userAuthToken = Cookies.get("authToken")
         axios
+
+            .get(ENDPOINTS.GET_ALL_ADMIN_USERS, { headers: getHeaders })
+
             .get(url, { headers: headers })
             .then(response => {
                 setAllAdminUsers(response.data.user_data)
@@ -59,7 +56,7 @@ function AdminUsers() {
         const reqUrl = ENDPOINTS.DELETE_ADMIN_USER + "?userId=" + userId
 
         axios
-        .delete(reqUrl, {headers:headers})
+        .delete(reqUrl, {headers:getHeaders})
         .then(response => {
             Swal.fire({
                 title: response.data.message,

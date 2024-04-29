@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "../css/style.css";
-import Cookies from "js-cookie";
 import axios from "axios";
 import { ENDPOINTS } from "../helper/endpoints";
 import { Container, Card, Col, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import backImg from "../asserts/back-button.png";
+import {getHeaders} from "../helper/Common";
 
 function VideoCategoryHome() {
-  const userAuthToken = Cookies.get("authToken");
   const [videoCategory, setVideoCategory] = useState([]);
   const [videoCatId, setVideoCatId] = useState("");
   const [categoryName, setCategoryName] = useState("");
@@ -16,10 +15,7 @@ function VideoCategoryHome() {
   const [isCategoryActive, setCategoryActive] = useState(true);
   const [openUpdateCat, setOpenUpdateCat] = useState(false);
 
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: userAuthToken,
-  };
+
 
   useEffect(() => {
     fetchAllVideoCat();
@@ -27,7 +23,7 @@ function VideoCategoryHome() {
 
   const fetchAllVideoCat = () => {
     axios
-      .get(ENDPOINTS.GET_ALL_VIDEO_CATEGORY, { headers: headers })
+      .get(ENDPOINTS.GET_ALL_VIDEO_CATEGORY, { headers: getHeaders })
       .then((response) => {
         console.log(response.data.video_data[0].is_category_active);
         setVideoCategory(response.data.video_data);
@@ -39,10 +35,8 @@ function VideoCategoryHome() {
 
   const deleteVideoCat = (cat_id) => {
     axios
-      .delete(ENDPOINTS.DELETE_VIDEO_CATEGORY + "?" + "category_id=" + cat_id, {
-        headers: {
-          Authorization: userAuthToken,
-        },
+      .delete(ENDPOINTS.DELETE_VIDEO_CATEGORY + "?category_id=" + cat_id, {
+        headers:getHeaders
       })
       .then((response) => {
         Swal.fire({
@@ -75,7 +69,7 @@ function VideoCategoryHome() {
     };
 
     axios
-      .put(ENDPOINTS.UPDATE_VIDEO_CATEGORY, requestOption, { headers: headers })
+      .put(ENDPOINTS.UPDATE_VIDEO_CATEGORY, requestOption, { headers: getHeaders })
       .then((response) => {
         Swal.fire({
           title: response.data.message,

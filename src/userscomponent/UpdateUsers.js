@@ -6,8 +6,8 @@ import axios from "axios";
 import {ENDPOINTS} from "../helper/endpoints";
 import Swal from "sweetalert2";
 import {useNavigate} from "react-router-dom";
-import Cookies from "js-cookie";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {getHeaders} from "../helper/Common";
 
 function UpdateUsers() {
     const navigation = useNavigate()
@@ -17,12 +17,6 @@ function UpdateUsers() {
     const [userName, setUserName] = useState(location.state.username)
     const [userMobile, setUserMobile] = useState(location.state.mobile)
     const [userEmail, setUserEmail] = useState(location.state.email)
-
-    const userAuthToken = Cookies.get("authToken")
-    const headers = {
-        "Content-Type": "application/json",
-        Authorization: userAuthToken,
-    };
 
 
     const updateUser= () => {
@@ -35,7 +29,7 @@ function UpdateUsers() {
         }
 
         axios
-        .put(ENDPOINTS.UPDATE_ADMIN_USER, requestOption, {headers:headers})
+        .put(ENDPOINTS.UPDATE_ADMIN_USER, requestOption, {headers:getHeaders})
         .then(response => {
             Swal.fire({
                 title: response.data.message,
