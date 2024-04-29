@@ -1,5 +1,6 @@
 
-const BASE_URL = "http://localhost:5000/api/"
+// const BASE_URL = "http://localhost:5000/api/"
+const BASE_URL = "http://13.233.96.169:8080/api/"
 
 
 const CREATE_ADMIN_USER = BASE_URL + "create-admin-user"
@@ -18,6 +19,12 @@ const UPDATE_VIDEO_CATEGORY = BASE_URL + "video-category/update-category"
 const GET_ALL_VIDEOS = BASE_URL + "videos/get-all-videos"
 const UPLOAD_VIDEO = BASE_URL + "videos/add-video"
 const DELETE_VIDEO = BASE_URL + "videos/delete-video"
+const ACTIVE_VIDEOS = BASE_URL + "inactive-video/"
+
+// WallPaper
+const UPLOAD_WALLPAPER = BASE_URL + "add-wallpaper"
+const GET_ALL_WALLPAPER = BASE_URL + "get-wallpapers"
+const ACTIVE_WALLPAPER = BASE_URL + "active-wallpaper/"
 
 export const ENDPOINTS = {
     ADMIN_USER_LOGIN:ADMIN_USER_LOGIN,
@@ -34,5 +41,9 @@ export const ENDPOINTS = {
     GET_ALL_VIDEOS:GET_ALL_VIDEOS,
     UPLOAD_VIDEO:UPLOAD_VIDEO,
     DELETE_VIDEO:DELETE_VIDEO,
+    UPLOAD_WALLPAPER:UPLOAD_WALLPAPER,
+    GET_ALL_WALLPAPER:GET_ALL_WALLPAPER,
+    ACTIVE_WALLPAPER:ACTIVE_WALLPAPER,
+    ACTIVE_VIDEOS:ACTIVE_VIDEOS
 }
  
