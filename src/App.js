@@ -6,8 +6,13 @@ import AdminHome from "./components/AdminHome";
 import VideoCategoryHome from "./components/VideoCategoryHome";
 import AddVideoCategory from "./components/AddVideoCategory";
 import UserProfile from "./components/UserProfile";
+import VerifyVideos from "./components/VerifyVideos";
+import PublishVideos from "./components/PublishedVideos";
 import AdminUsers from "./userscomponent/AdminUsers";
+import VerificationFailed from "./components/VerificationFailed";
 import AddUsers from "./userscomponent/AddUsers";
+import UnPublishedVideos from "./components/UnPublishedVideos";
+import VideoFullDetails from "./components/VideoFullDetails";
 import UpdateUsers from "./userscomponent/UpdateUsers";
 import WallPaperHome from "./components/InActiveWallPaper";
 import ActiveWallPaper from "./components/ActiveWallPaper";
@@ -95,13 +100,21 @@ function AppSideBar() {
               {label:"InActive WallPaper", style:{fontWeight:'bold'},  key:"/inactive-wallpaper"}
             ],
           },
+
+          { label: "Profile", key: "/profile", icon: <UserOutlined /> },
+          
+          { label: "Verify Videos", key: "/verify-videos" },
+          { label: "Publish Videos", key: "/publish-videos" },
+          { label: "UnPublish Videos", key: "/unpublish-videos" },
+          { label: "Verification Failed Videos", key: "/verification-failed-videos" },
+
+
           {
             label: "Video Cat",
             key: "/video_cat",
             icon: <PoweroffOutlined />,
             danger: true,
           },
-          { label: "", key: "/admin-home1" },
           { label: "", key: "/admin-home2" },
           { label: "", key: "/admin-home3" },
           { label: "", key: "/admin-home4" },
@@ -128,8 +141,14 @@ function Content() {
         <Route path="/video_cat" element={<div>Signout</div>}></Route>
         <Route path="/show-category" element={<VideoCategoryHome/>}></Route>
         <Route path="/add-category" element={<AddVideoCategory/>}></Route>
+
         <Route path="/inactive-wallpaper" element={<WallPaperHome/>}></Route>
         <Route path="/active-wallpaper" element={<ActiveWallPaper/>}></Route>
+        <Route path="/verify-videos" element={<VerifyVideos/>}></Route>
+        <Route path="/publish-videos" element={<PublishVideos/>}></Route>
+        <Route path="/unpublish-videos" element={<UnPublishedVideos/>}></Route>
+        <Route path="/verification-failed-videos" element={<VerificationFailed/>}></Route>
+        <Route path="/video-full-details" element={<VideoFullDetails/>}></Route>
 
       </Routes>
     </div>

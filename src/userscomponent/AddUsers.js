@@ -15,11 +15,12 @@ function AddUsers() {
 
     const addNewUser = () => {
         const requestOptions = {
-            "username":userName,
-            "mobile":"+91" + userMobile,
+            "name":userName,
+            "contact":"+91" + userMobile,
             "email": userEmail,
             "password": userPassword,
-            "user_type": "admin-user"
+            "user_type": "ADMIN",
+            "is_account_active":true
         }
 
         axios
