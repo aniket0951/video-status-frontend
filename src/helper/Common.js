@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import Swal from "sweetalert2";
 
 const userAuthToken = Cookies.get("authToken")
 

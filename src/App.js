@@ -9,6 +9,9 @@ import UserProfile from "./components/UserProfile";
 import AdminUsers from "./userscomponent/AdminUsers";
 import AddUsers from "./userscomponent/AddUsers";
 import UpdateUsers from "./userscomponent/UpdateUsers";
+import WallPaperHome from "./components/InActiveWallPaper";
+import ActiveWallPaper from "./components/ActiveWallPaper";
+import InActiveVideos from "./components/InActiveVideos";
 import { Menu } from "antd";
 import {
   DashOutlined,
@@ -28,7 +31,7 @@ function App() {
         </div>
       ) : (
         <div className="AppMain">
-          <Header />
+          {/* <Header /> */}
           <div className="App">
             <AppSideBar />
             <Content />
@@ -43,8 +46,7 @@ function App() {
 
 function Header() {
   return (
-    <div className="header" >
-      <hq>Header</hq>
+    <div className="header" style={{backgroundColor:'ActiveBorder', position:'fixed', top:0, width:'100%', zIndex:1000}}>
     </div>
   );
 }
@@ -68,23 +70,31 @@ function AppSideBar() {
         }}
         defaultSelectedKeys={[window.location.pathname]}
         items={[
-          { label: "Home", key: "/admin-home", icon: <HomeOutlined /> },
-          { label: "Users", key: "/users", icon: <DashOutlined />,
+          { label: "Home", style:{fontWeight:'bold'}, key: "/admin-home", icon: <HomeOutlined />},
+          { label:"InActive Videos", style:{fontWeight:'bold'},  key:"/inactive-videos"},
+          { label: "Users", style:{fontWeight:'bold'},  key: "/users", icon: <DashOutlined />,
           children: [
-            {label: "Show Users", key: "/show-users"},
-            {label: "Add User", key: "/add-user"},
+            {label: "Show Users", style:{fontWeight:'bold'},  key: "/show-users"},
+            {label: "Add User", style:{fontWeight:'bold'},  key: "/add-user"},
           ]
           },
           {
             label: "Video Category",
             key: "/userlist",
+            style:{fontWeight:'bold'}, 
             icon: <UnorderedListOutlined />,
             children: [
-              { label: "Show Category", key: "/show-category" },
-              { label: "Add Category", key: "/add-category" },
+              { label: "Show Category", style:{fontWeight:'bold'},  key: "/show-category" },
+              { label: "Add Category", style:{fontWeight:'bold'},  key: "/add-category" },
             ],
           },
-          { label: "Profile", key: "/profile", icon: <UserOutlined /> },
+          { label: "Profile", style:{fontWeight:'bold'},  key: "/profile", icon: <UserOutlined /> },
+          {label:"WallPaper", style:{fontWeight:'bold'},  key:"/wallpaper", icon:<UserOutlined/>, 
+            children:[
+              {label:"Active WallPaper", style:{fontWeight:'bold'},  key:"/active-wallpaper"},
+              {label:"InActive WallPaper", style:{fontWeight:'bold'},  key:"/inactive-wallpaper"}
+            ],
+          },
           {
             label: "Video Cat",
             key: "/video_cat",
@@ -109,6 +119,7 @@ function Content() {
     <div>
       <Routes>
         <Route path="/admin-home" element={<AdminHome />}></Route>
+        <Route path="/inactive-videos" element={<InActiveVideos />}></Route>
         <Route path="/show-users" element={<AdminUsers />}></Route>
         <Route path={"/add-user"} element={<AddUsers/>} />
         <Route path={"/update-user"} element={<UpdateUsers/>} />
@@ -117,6 +128,9 @@ function Content() {
         <Route path="/video_cat" element={<div>Signout</div>}></Route>
         <Route path="/show-category" element={<VideoCategoryHome/>}></Route>
         <Route path="/add-category" element={<AddVideoCategory/>}></Route>
+        <Route path="/inactive-wallpaper" element={<WallPaperHome/>}></Route>
+        <Route path="/active-wallpaper" element={<ActiveWallPaper/>}></Route>
+
       </Routes>
     </div>
   );
